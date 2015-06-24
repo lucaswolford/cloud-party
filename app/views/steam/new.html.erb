@@ -1,0 +1,16 @@
+<h2> Steam </h2>
+
+<br/>
+
+<%= @games.size %>
+
+<br/>
+
+<% @games.each do |game| %>
+  <%= game.name %>
+  <br/>
+<% end %>
+
+<br/>
+
+<%= link_to "Back", steam_index_path %>
