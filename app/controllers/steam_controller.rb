@@ -1,10 +1,7 @@
 class SteamController < ApiController
 
   def shared
-    player_ids = [
-      '76561198018519384',
-      '76561197984012553',
-      '76561198002019198']
+    player_ids = params[:player_ids]
 
     # create players
     @players = player_ids.collect {|id| Player.new(id) }
