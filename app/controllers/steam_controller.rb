@@ -1,9 +1,6 @@
-class SteamController < ApplicationController
+class SteamController < ApiController
 
-  def index
-  end
-
-  def new
+  def shared
     player_ids = [
       '76561198018519384',
       '76561197984012553',

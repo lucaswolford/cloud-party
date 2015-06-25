@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'steam#index'
+  root 'steam#shared'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-  resources :steam
+  resources :steam, only: :none do
+    member do
+      get :shared
+    end
+  end
 
   # Example resource route with sub-resources:
   #   resources :products do
