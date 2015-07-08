@@ -1,0 +1,24 @@
+<h1>Cloud Party</h1>
+<img src="angular/images/line.jpg" alt="">
+
+<div class="cp_add_users">
+    <p>Enter your Steam ID and your name to see what games everyone has in common.</p>
+    <form class="cp_form">
+        <div class="block">
+            <input placeholder="Name..." type="text" class="cp_newGamer gamerName" data-ng-model="newGamerName" />
+        </div>
+        <div class="block">
+            <input placeholder="Steam ID" type="text" class="cp_newGamer gamerId" data-ng-model="newGamerId" />
+        </div>
+        <button class="cp_add" ng-click="addGamer()">Add Gamer</button>
+    </form>
+</div>
+<div class="cp_users">
+    <h2 ng-if="gamers.length > 0">Gamers</h2>
+    <ul>
+        <li ng-repeat="gamer in gamers">{{gamer.name}} <span ng-click="removeGamer(gamer)" class="remove">X</span></li>
+    </ul>
+</div>
+
+<br class="clear">
+<button class="cp_checkGames" ng-if="gamers.length > 1" ng-click="checkGames()">Find Games in Common</button>

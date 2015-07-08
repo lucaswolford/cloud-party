@@ -1,0 +1,107 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    background-color:#00A99D !important;
+    margin:0px;
+    padding:0px;
+}
+
+* {
+    -webkit-box-sizing: initial !important;
+    -moz-box-sizing: initial !important;
+    box-sizing: initial !important;
+}
+
+h1 {
+    padding: 0px;
+    width: 200px !important;
+    margin: 0px auto !important;
+}
+
+.clear {
+    clear:both !important;
+}
+
+#cp_wrapper {
+    margin: 0px auto;
+    width: 614px;
+    background-color:#E6E6E6 !important;
+}
+
+#cp_header {
+    width:614px;
+    height: 190px;
+    background-image: url(../images/header.jpg);
+}
+
+.ng-view {
+    width: 520px;
+    background-color: white;
+    margin: -64px auto;
+    padding: 20px;
+}
+
+.cp_add_users {
+    width: 48%;
+    float: left;
+}
+
+.cp_users {
+    width: 45%;
+    float: left;
+    margin-left: 4%;
+}
+
+.cp_users h2 {
+    background-color: #00A99D;
+    color: white;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.cp_users ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.cp_users ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+.cp_users ul li:nth-child(odd) {
+    background-color: #EFEFEF;
+}
+
+.cp_users ul li:nth-child(even) {
+    background-color: #E5E5E5;
+}
+
+.block {
+    margin-bottom: 20px;
+}
+
+input.cp_newGamer {
+    padding: 4px;
+    font-size: 16pt;
+}
+
+button.cp_add {
+      width: 206px;
+    font-size: 14pt;
+}
+
+button.cp_checkGames {
+    width: 505px;
+    font-size: 14pt;
+    margin-top: 20px;
+}
+
+span.remove {
+  background-color: red;
+  color: white;
+  padding: 3px;
+  float: right;
+  margin-top: -3px;
+  cursor: pointer;
+}
