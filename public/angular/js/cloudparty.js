@@ -17,10 +17,10 @@ cloudParty.config(function ($routeProvider) {
       });
 });
 
-cloudParty.factory('games', [
+cloudParty.factory('getGames', [
     '$http', 
     
-    function ($http){
+function ($http){
         
         return function(gamerString){
             return $http({
@@ -28,15 +28,15 @@ cloudParty.factory('games', [
                 url: '?' + gamerString
             });
 
-         }
+        }
 }]);
 
 cloudParty.controller('MainCtrl', [
     '$scope', 
-    'games',
+    'getGames',
     '$modal',
     
-    function ($scope, games, $modal){	
+function ($scope, getGames, $modal){	
         
         angular.element('.gamerName').focus()
 	    $scope.newGamerName = '';
@@ -65,6 +65,7 @@ cloudParty.controller('MainCtrl', [
         };
         
         $scope.checkGames = function() {
+            console.log('click');
             $scope.gamerString = '';
             $.each( $scope.gamers, function( i ) {
                 if (i == 0) {   
@@ -74,10 +75,11 @@ cloudParty.controller('MainCtrl', [
                     $scope.gamerString += '&player_ids[]='+$scope.gamers[i].id;   
                 }
             });
+            console.log($scope.gamerString)
             
-            games($scope.gamerString).success(function (data) { 
-                    $scope.games =  data;
-                    console.log($scope.games);
+            getGames($scope.gamerString).success(function (data) { 
+                    $scope.getGames =  data;
+                    console.log($scope.getGames);
             }); 
         }
         
@@ -105,7 +107,13 @@ cloudParty.controller('MainCtrl', [
 
 }]);
 
-cloudParty.controller('ModalInstanceCtrl', ['$scope','$modalInstance','header','data', function ($scope, $modalInstance, header, data) {
+cloudParty.controller('ModalInstanceCtrl', [
+    '$scope',
+    '$modalInstance',
+    'header',
+    'data', 
+
+function ($scope, $modalInstance, header, data) {
 
  	$scope.data = data;
  	$scope.header = header;
@@ -113,12 +121,4 @@ cloudParty.controller('ModalInstanceCtrl', ['$scope','$modalInstance','header','
  	$scope.close = function () {
     	$modalInstance.close();
   	};
-}]);
-
-cloudParty.directive('focusOn', [ function() {
-   return function(scope, elem, attr) {
-      scope.$on(attr.focusOn, function(e) {
-          elem[0].focus();
-      });
-   };
 }]);

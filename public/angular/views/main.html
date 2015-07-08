@@ -2,13 +2,13 @@
 <img src="angular/images/line.jpg" alt="">
 
 <div class="cp_add_users">
-    <p>Enter your Steam ID and your name to see what games everyone has in common.</p>
+    <p>Enter everyone's name and Steam ID to see what games you have in common.</p>
     <form class="cp_form">
         <div class="block">
             <input placeholder="Name..." type="text" class="cp_newGamer gamerName" data-ng-model="newGamerName" />
         </div>
         <div class="block">
-            <input placeholder="Steam ID" type="text" class="cp_newGamer gamerId" data-ng-model="newGamerId" />
+            <input placeholder="Steam ID..." type="text" class="cp_newGamer gamerId" data-ng-model="newGamerId" />
         </div>
         <button class="cp_add" ng-click="addGamer()">Add Gamer</button>
     </form>
