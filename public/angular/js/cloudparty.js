@@ -38,6 +38,7 @@ cloudParty.controller('MainCtrl', [
     
     function ($scope, games, $modal){	
         
+        angular.element('.gamerName').focus()
 	    $scope.newGamerName = '';
         $scope.newGamerId = '';
         $scope.gamers = [];
@@ -49,6 +50,7 @@ cloudParty.controller('MainCtrl', [
                 
                 $scope.newGamerName = '';
                 $scope.newGamerId = '';
+                angular.element('.gamerName').focus()
                 
             } else {
                 

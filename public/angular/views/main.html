@@ -22,3 +22,6 @@
 
 <br class="clear">
 <button class="cp_checkGames animate-if" ng-if="gamers.length > 1" ng-click="checkGames()">Find Games in Common</button>
+<ul class="cp_games">
+    <li ng-repeat="game in games">{{ game }}</li>
+</ul>
