@@ -1,6 +1,6 @@
-class SteamController < ApplicationController
+class SteamController < ApiController
 
-  def shared
+  def shared_games
     player_ids = params[:player_ids]
 
     unless player_ids.blank?
@@ -13,12 +13,8 @@ class SteamController < ApplicationController
         Game.get_shared(games, player.games)
       end
 
-	  respond_to do |format|
-		  format.html{ render 'steam/shared.html.erb' }
-		  format.json{
-			        render json: @games.to_json
-		  }
-	  end
+			render json: @games.to_json
+
     end
   end
 end
