@@ -57,18 +57,17 @@ function ($scope, getGames, $modal){
                 
             } else {
                 
-                $scope.openDialog($scope.idRequired, 'Oops!');
-                
+                $scope.openDialog($scope.idRequired, 'Oops!');  
             }
         };
         
         $scope.removeGamer = function(gamer) {
             $scope.index = $scope.gamers.indexOf(gamer);
             $scope.gamers.splice($scope.index, 1);
+            $scope.commonGames =  [];
         };
         
         $scope.checkGames = function() {
-            console.log('click');
             $scope.gamerString = '';
             $.each( $scope.gamers, function( i ) {
                 if (i == 0) {   
@@ -78,17 +77,17 @@ function ($scope, getGames, $modal){
                     $scope.gamerString += '&player_ids[]='+$scope.gamers[i].id;   
                 }
             });
-            console.log($scope.gamerString)
             
             getGames($scope.gamerString).success(function (data) { 
                 $scope.commonGames =  JSON.parse(data);
-                console.log($scope.commonGames);
+                
             }).error(function (data, status, headers, config) {
                 $scope.openDialog($scope.wrongId, 'Oops!');
                 angular.element('.gamerName').focus()
                 $scope.newGamerName = '';
                 $scope.newGamerId = '';
                 $scope.gamers = [];
+                $scope.commonGames =  [];
             });
         }
         
