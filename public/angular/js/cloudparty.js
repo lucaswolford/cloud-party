@@ -17,6 +17,7 @@ cloudParty.config(function ($routeProvider) {
       });
 });
 
+
 cloudParty.factory('getGames', [
     '$http', 
     
@@ -25,9 +26,8 @@ function ($http){
         return function(gamerString){
             return $http({
                 method: 'GET',
-                url: '?' + gamerString
+                url: 'steam/shared_games?' + gamerString
             });
-
         }
 }]);
 
@@ -35,6 +35,7 @@ cloudParty.controller('MainCtrl', [
     '$scope', 
     'getGames',
     '$modal',
+   
     
 function ($scope, getGames, $modal){	
         
@@ -42,7 +43,9 @@ function ($scope, getGames, $modal){
 	    $scope.newGamerName = '';
         $scope.newGamerId = '';
         $scope.gamers = [];
-        
+        $scope.idRequired = 'Both the name of the gamer and his/her ID are required';
+        $scope.wrongId = 'Check to make sure that the Steam IDs you entered are correct...';
+         
         $scope.addGamer = function() {
             
             if ($scope.newGamerName != '' && $scope.newGamerId != '') {
@@ -54,7 +57,7 @@ function ($scope, getGames, $modal){
                 
             } else {
                 
-                $scope.openDialog('Both the name of the gamer and his/her ID are required', 'Oops!');
+                $scope.openDialog($scope.idRequired, 'Oops!');
                 
             }
         };
@@ -78,9 +81,15 @@ function ($scope, getGames, $modal){
             console.log($scope.gamerString)
             
             getGames($scope.gamerString).success(function (data) { 
-                    $scope.getGames =  data;
-                    console.log($scope.getGames);
-            }); 
+                $scope.commonGames =  JSON.parse(data);
+                console.log($scope.commonGames);
+            }).error(function (data, status, headers, config) {
+                $scope.openDialog($scope.wrongId, 'Oops!');
+                angular.element('.gamerName').focus()
+                $scope.newGamerName = '';
+                $scope.newGamerId = '';
+                $scope.gamers = [];
+            });
         }
         
         $scope.openDialog = function(response, header) {
@@ -98,13 +107,7 @@ function ($scope, getGames, $modal){
         		    }
       		}
     	});
-
-	modalInstance.result.then(function (selectedItem) { 
-		$scope.selected = selectedItem;
-    		}, function () {
-    	});
 	};
-
 }]);
 
 cloudParty.controller('ModalInstanceCtrl', [
