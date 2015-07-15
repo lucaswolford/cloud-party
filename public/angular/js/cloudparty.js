@@ -42,6 +42,7 @@ function ($scope, getGames, $modal){
         angular.element('.gamerName').focus()
 	    $scope.newGamerName = '';
         $scope.newGamerId = '';
+        $scope.commonGames = [];
         $scope.gamers = [];
         $scope.idRequired = 'Both the name of the gamer and his/her ID are required';
         $scope.wrongId = 'Check to make sure that the Steam IDs you entered are correct...';
@@ -53,7 +54,11 @@ function ($scope, getGames, $modal){
                 
                 $scope.newGamerName = '';
                 $scope.newGamerId = '';
-                angular.element('.gamerName').focus()
+                angular.element('.gamerName').focus();
+                
+                if ($scope.commonGames.length > 0) {
+                        $scope.checkGames();
+                }
                 
             } else {
                 
@@ -64,7 +69,7 @@ function ($scope, getGames, $modal){
         $scope.removeGamer = function(gamer) {
             $scope.index = $scope.gamers.indexOf(gamer);
             $scope.gamers.splice($scope.index, 1);
-            $scope.commonGames =  [];
+            $scope.commonGames = [];
         };
         
         $scope.checkGames = function() {
@@ -87,7 +92,7 @@ function ($scope, getGames, $modal){
                 $scope.newGamerName = '';
                 $scope.newGamerId = '';
                 $scope.gamers = [];
-                $scope.commonGames =  [];
+                $scope.commonGames = [];
             });
         }
         
